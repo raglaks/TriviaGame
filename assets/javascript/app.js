@@ -45,7 +45,7 @@ var questions = {
 //variables for normal game timer and answer timer
 var time = 31;
 
-var answerTime = 7;
+var answerTime = 5;
 
 var interval;
 
@@ -65,6 +65,9 @@ var question = 0;
 
 //var shows the correct answer for wrong function
 var C = null;
+
+//var click variable for unanswered function
+var click = false;
 
 
 $(document).ready(function () {
@@ -93,7 +96,7 @@ $(document).ready(function () {
             results();
         }
     }
-    
+
     //play again func
     function playAgain() {
         reset();
@@ -102,6 +105,7 @@ $(document).ready(function () {
         no = 0;
         question = 0;
         C = null;
+        click = false;
 
         qCount();
     }
@@ -111,18 +115,26 @@ $(document).ready(function () {
         clear();
 
         if (right === 6) {
-            $("#q").append("<h2> you got all the questions right, nice.</h2>");
+            $("#pic").html("<h2>Results:</h2>");
+            $("#q").append("<h2>you got all the questions right, nice.</h2>");
             $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
         } else if (incorrect === 6) {
-            $("#q").append("<h2> you got all the questions wrong.</h2>");
+            $("#pic").html("<h2>Results:</h2>");
+            $("#q").append("<h2>you got all the questions wrong.</h2>");
+            $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
+        } else if (no === 6) {
+            $("#pic").html("<h2>Results:</h2>");
+            $("#q").append("<h2>you didn't answer any questions.</h2>");
             $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
         } else {
-            $("#q").append("<h2> you got " + right + " question(s) right.</h2>");
-            $("#q").append("<h2> you got " + incorrect + " question(s) wrong.</h2>");
+            $("#pic").html("<h2>Results:</h2>");
+            $("#q").append("<h2>you got " + right + " question(s) right.</h2>");
+            $("#q").append("<h2>you got " + incorrect + " question(s) wrong.</h2>");
+            $("#q").append("<h2>you didn't answer " + no + " question(s).</h2>");
             $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
         }
 
-        $("#again").on("click", function() {
+        $("#again").on("click", function () {
             playAgain();
         })
 
@@ -141,18 +153,22 @@ $(document).ready(function () {
 
         $("#1").on("click", function () {
             correct();
+            click = true;
         });
 
         $("#2").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#3").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#4").on("click", function () {
             wrong();
+            click = true;
         });
     }
 
@@ -169,18 +185,22 @@ $(document).ready(function () {
 
         $("#1").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#2").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#3").on("click", function () {
             correct();
+            click = true;
         });
 
         $("#4").on("click", function () {
             wrong();
+            click = true;
         });
     }
 
@@ -197,18 +217,22 @@ $(document).ready(function () {
 
         $("#1").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#2").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#3").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#4").on("click", function () {
             correct();
+            click = true;
         });
     }
 
@@ -225,18 +249,22 @@ $(document).ready(function () {
 
         $("#1").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#2").on("click", function () {
             correct();
+            click = true;
         });
 
         $("#3").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#4").on("click", function () {
             wrong();
+            click = true;
         });
     }
 
@@ -253,18 +281,22 @@ $(document).ready(function () {
 
         $("#1").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#2").on("click", function () {
             correct();
+            click = true;
         });
 
         $("#3").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#4").on("click", function () {
             wrong();
+            click = true;
         });
     }
 
@@ -281,18 +313,22 @@ $(document).ready(function () {
 
         $("#1").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#2").on("click", function () {
             wrong();
+            click = true;
         });
 
         $("#3").on("click", function () {
             correct();
+            click = true;
         });
 
         $("#4").on("click", function () {
             wrong();
+            click = true;
         });
     }
 
@@ -314,15 +350,17 @@ $(document).ready(function () {
         answerRun();
         $("#timer").html("<h2>wrong answer</h2>");
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/wrong.gif' alt='wrong answer gif'/>");
-        $("#q").html("<h2>the correct answer is: " + C + "</h2>")
+        $("#q").html("<h2>the correct answer is: " + C + "</h2>");
         incorrect = incorrect + 1;
         console.log(incorrect);
     }
 
     function noA() {
+        $("#timer").html("<h2>time's up</h2>");
+        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/huh.gif' alt='no answer gif'/>");
+        $("#q").html("<h2>the correct answer is: " + C + "</h2>");
         no = no + 1;
-        qCount();
-        clear();
+        answerRun();
     }
 
     //function to clear divs
@@ -360,12 +398,16 @@ $(document).ready(function () {
         time--;
         $("#timer").html("<h2>you have " + time + " second(s) remaining</h2>");
 
-        if (time === 0) {
+        if (time === 0 && click === true) {
             stop();
-            $("#timer").html("<h2>time's up</h2>");
             qCount();
             // noA();
+        } else if (time === 0 && click === false) {
+            stop();
+            noA();
         }
+
+        click = false;
     }
 
     function stop() {
@@ -377,7 +419,7 @@ $(document).ready(function () {
     //reset global vars for round timer and answer timer
     function reset() {
         time = 31;
-        answerTime = 7;
+        answerTime = 5;
     }
 })
 
