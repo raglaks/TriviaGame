@@ -42,6 +42,7 @@ var questions = {
     }
 }
 
+//variables for normal game timer and answer timer
 var time = 31;
 
 var answerTime = 7;
@@ -50,13 +51,21 @@ var interval;
 
 var answerInterval;
 
-var right = null;
+//var to count right answers
+var right = 0;
 
-var incorrect = null;
+//var to count wrong answers
+var incorrect = 0;
 
-var no = null;
+//var to count unanswered questions
+var no = 0;
 
+//question counter; basically makes the game run
 var question = 0;
+
+//var shows the correct answer for wrong function
+var C = null;
+
 
 $(document).ready(function () {
     $("#start").on("click", function () {
@@ -84,9 +93,44 @@ $(document).ready(function () {
             results();
         }
     }
+    
+    //play again func
+    function playAgain() {
+        reset();
+        right = 0;
+        incorrect = 0;
+        no = 0;
+        question = 0;
+        C = null;
+
+        qCount();
+    }
+
+    //results page
+    function results() {
+        clear();
+
+        if (right === 6) {
+            $("#q").append("<h2> you got all the questions right, nice.</h2>");
+            $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
+        } else if (incorrect === 6) {
+            $("#q").append("<h2> you got all the questions wrong.</h2>");
+            $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
+        } else {
+            $("#q").append("<h2> you got " + right + " question(s) right.</h2>");
+            $("#q").append("<h2> you got " + incorrect + " question(s) wrong.</h2>");
+            $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
+        }
+
+        $("#again").on("click", function() {
+            playAgain();
+        })
+
+    }
 
     //first question
     function django() {
+        C = questions.django.opt1;
         run();
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/django.jpg' alt='django still' />");
         $("#q").html("<h2>What movie is this still from?</h2>");
@@ -114,6 +158,7 @@ $(document).ready(function () {
 
     //second question
     function dogs() {
+        C = questions.dogs.opt3;
         run();
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/dogs.jpg' alt='dogs still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
@@ -141,6 +186,7 @@ $(document).ready(function () {
 
     //third question
     function inglo() {
+        C = questions.inglo.opt4;
         run();
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/inglo.jpg' alt='inglo still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
@@ -168,6 +214,7 @@ $(document).ready(function () {
 
     //fourth question
     function killbill() {
+        C = questions.killbill.opt2;
         run();
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/killbill.jpg' alt='killbill still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
@@ -195,6 +242,7 @@ $(document).ready(function () {
 
     //fifth question
     function proof() {
+        C = questions.proof.opt2;
         run();
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/proof.jpg' alt='deathproof still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
@@ -222,6 +270,7 @@ $(document).ready(function () {
 
     //sixth question
     function pulp() {
+        C = questions.pulp.opt3;
         run();
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/pulp.jpg' alt='pulp still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
@@ -265,6 +314,7 @@ $(document).ready(function () {
         answerRun();
         $("#timer").html("<h2>wrong answer</h2>");
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/wrong.gif' alt='wrong answer gif'/>");
+        $("#q").html("<h2>the correct answer is: " + C + "</h2>")
         incorrect = incorrect + 1;
         console.log(incorrect);
     }
@@ -275,15 +325,14 @@ $(document).ready(function () {
         clear();
     }
 
+    //function to clear divs
     function clear() {
         $("#timer").html("");
         $("#pic").html("");
         $("#q").html("");
     }
 
-
-
-    //answer page timer
+    //answer page timer function
     function answerRun() {
         answerInterval = setInterval(answerTimer, 1000);
     }
@@ -309,7 +358,7 @@ $(document).ready(function () {
 
     function timer() {
         time--;
-        $("#timer").html("<h2>you have " + time + " seconds remaining</h2>");
+        $("#timer").html("<h2>you have " + time + " second(s) remaining</h2>");
 
         if (time === 0) {
             stop();
@@ -325,10 +374,9 @@ $(document).ready(function () {
 
     }
 
-    //reset global vars
+    //reset global vars for round timer and answer timer
     function reset() {
         time = 31;
-
         answerTime = 7;
     }
 })
