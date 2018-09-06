@@ -146,7 +146,7 @@ $(document).ready(function () {
     function django() {
         C = questions.django.opt1;
         run();
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/django.jpg' alt='django still' />");
+        $("#pic").html("<img src='assets/images/django.jpg' alt='django still' />");
         $("#q").html("<h2>What movie is this still from?</h2>");
         $("#q").append("<div id='1'><h3>" + questions.django.opt1 + "</h3></div>");
         $("#q").append("<div id='2'><h3>" + questions.django.opt2 + "</h3></div>");
@@ -178,7 +178,7 @@ $(document).ready(function () {
     function dogs() {
         C = questions.dogs.opt3;
         run();
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/dogs.jpg' alt='dogs still'/>");
+        $("#pic").html("<img src='assets/images/dogs.jpg' alt='dogs still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
         $("#q").append("<div id='1'><h3>" + questions.dogs.opt1 + "</h3></div>");
         $("#q").append("<div id='2'><h3>" + questions.dogs.opt2 + "</h3></div>");
@@ -210,7 +210,7 @@ $(document).ready(function () {
     function inglo() {
         C = questions.inglo.opt4;
         run();
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/inglo.jpg' alt='inglo still'/>");
+        $("#pic").html("<img src='assets/images/inglo.jpg' alt='inglo still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
         $("#q").append("<div id='1'><h3>" + questions.inglo.opt1 + "</h3></div>");
         $("#q").append("<div id='2'><h3>" + questions.inglo.opt2 + "</h3></div>");
@@ -242,7 +242,7 @@ $(document).ready(function () {
     function killbill() {
         C = questions.killbill.opt2;
         run();
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/killbill.jpg' alt='killbill still'/>");
+        $("#pic").html("<img src='assets/images/killbill.jpg' alt='killbill still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
         $("#q").append("<div id='1'><h3>" + questions.killbill.opt1 + "</h3></div>");
         $("#q").append("<div id='2'><h3>" + questions.killbill.opt2 + "</h3></div>");
@@ -274,7 +274,7 @@ $(document).ready(function () {
     function proof() {
         C = questions.proof.opt2;
         run();
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/proof.jpg' alt='deathproof still'/>");
+        $("#pic").html("<img src='assets/images/proof.jpg' alt='deathproof still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
         $("#q").append("<div id='1'><h3>" + questions.proof.opt1 + "</h3></div>");
         $("#q").append("<div id='2'><h3>" + questions.proof.opt2 + "</h3></div>");
@@ -306,7 +306,7 @@ $(document).ready(function () {
     function pulp() {
         C = questions.pulp.opt3;
         run();
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/pulp.jpg' alt='pulp still'/>");
+        $("#pic").html("<img src='assets/images/pulp.jpg' alt='pulp still'/>");
         $("#q").html("<h2>What movie is this still from?</h2>");
         $("#q").append("<div id='1'><h3>" + questions.pulp.opt1 + "</h3></div>");
         $("#q").append("<div id='2'><h3>" + questions.pulp.opt2 + "</h3></div>");
@@ -341,7 +341,7 @@ $(document).ready(function () {
         stop();
         answerRun();
         $("#timer").html("<h2 class='text-success'>correct!</h2>");
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/correct.gif'/>");
+        $("#pic").html("<img src='assets/images/correct.gif'/>");
         right = right + 1;
         console.log(right);
     }
@@ -351,7 +351,7 @@ $(document).ready(function () {
         stop();
         answerRun();
         $("#timer").html("<h2 class='text-danger'>wrong answer</h2>");
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/wrong.gif' alt='wrong answer gif'/>");
+        $("#pic").html("<img src='assets/images/wrong.gif' alt='wrong answer gif'/>");
         $("#q").html("<h2>the correct answer is: " + C + "</h2>");
         incorrect = incorrect + 1;
         console.log(incorrect);
@@ -359,7 +359,7 @@ $(document).ready(function () {
 
     function noA() {
         $("#timer").html("<h2 class='text-warning'>time's up</h2>");
-        $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/huh.gif' alt='no answer gif'/>");
+        $("#pic").html("<img src='assets/images/huh.gif' alt='no answer gif'/>");
         $("#q").html("<h2>the correct answer is: " + C + "</h2>");
         no = no + 1;
         answerRun();
