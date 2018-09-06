@@ -128,9 +128,11 @@ $(document).ready(function () {
             $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
         } else {
             $("#pic").html("<h2>Results:</h2>");
-            $("#q").append("<h2>you got " + right + " question(s) right.</h2>");
-            $("#q").append("<h2>you got " + incorrect + " question(s) wrong.</h2>");
-            $("#q").append("<h2>you didn't answer " + no + " question(s).</h2>");
+            $("#q").append("<h2 class='text-success'>you got " + right + " question(s) right.</h2>");
+            $("#q").append("<h2 class='text-danger'>you got " + incorrect + " question(s) wrong.</h2>");
+            if (no) {
+                $("#q").append("<h2>you didn't answer " + no + " question(s).</h2>");
+            }
             $("#q").append("<button type='button' class='btn btn-danger' id='again'>play again?</button>");
         }
 
@@ -338,7 +340,7 @@ $(document).ready(function () {
         clear();
         stop();
         answerRun();
-        $("#timer").html("<h2>correct!</h2>");
+        $("#timer").html("<h2 class='text-success'>correct!</h2>");
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/correct.gif'/>");
         right = right + 1;
         console.log(right);
@@ -348,7 +350,7 @@ $(document).ready(function () {
         clear();
         stop();
         answerRun();
-        $("#timer").html("<h2>wrong answer</h2>");
+        $("#timer").html("<h2 class='text-danger'>wrong answer</h2>");
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/wrong.gif' alt='wrong answer gif'/>");
         $("#q").html("<h2>the correct answer is: " + C + "</h2>");
         incorrect = incorrect + 1;
@@ -356,7 +358,7 @@ $(document).ready(function () {
     }
 
     function noA() {
-        $("#timer").html("<h2>time's up</h2>");
+        $("#timer").html("<h2 class='text-warning'>time's up</h2>");
         $("#pic").html("<img src='/Users/raglaks/Desktop/TriviaGame/assets/images/huh.gif' alt='no answer gif'/>");
         $("#q").html("<h2>the correct answer is: " + C + "</h2>");
         no = no + 1;
